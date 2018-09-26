@@ -12,7 +12,7 @@ class NodeTest {
     private Node node3;
 
     @BeforeEach
-    public void treeSetup(){
+    private void treeSetup(){
         node1 = new Node();
         node2 = new Node(node1);
         node3 = new Node(node1);
@@ -26,35 +26,31 @@ class NodeTest {
         assert node1 == node3.getParent();
     }
 
-    @Test
-    void setParent() {
-    }
-
     @org.junit.jupiter.api.Test
     void getLeftChild() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setLeftChild() {
+        assert node1.getLeftChild() == node2;
     }
 
     @org.junit.jupiter.api.Test
     void getRightChild() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setRightChild() {
+        assert node1.getRightChild() == node3;
     }
 
     @org.junit.jupiter.api.Test
     void hasRightChild() {
+        assert node1.hasRightChild();
+        if (node2.hasRightChild()) throw new AssertionError();
     }
 
     @org.junit.jupiter.api.Test
     void hasLeftChild() {
+        assert node1.hasLeftChild();
+        if (node3.hasLeftChild()) throw new AssertionError();
     }
 
     @org.junit.jupiter.api.Test
     void isRoot() {
+        assert node1.isRoot();
+        if(node3.isRoot()) throw new AssertionError();
     }
 }
