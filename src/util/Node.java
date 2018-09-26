@@ -6,37 +6,45 @@ public class Node {
     private Node rightChild;
 
     public Node(Node parent, Node leftChild, Node rightChild) {
-        if(!parent.isFull()){
-        this.parent = parent;
-        parent.setChild(this);}
+        parent.setChild(this);
 
-        this.leftChild = leftChild;
-        this.rightChild = rightChild;
+        setChild(leftChild);
+        setChild(rightChild);
     }
 
-    public Node(Node parent, Node leftChild){
-        if(!parent.isFull()){
-            this.parent = parent;
-            parent.setChild(this);}        this.leftChild = leftChild;
+    public Node(Node parent, Node child){
+        parent.setChild(this);
+        setChild(child);
     }
 
     public Node(Node parent){
-        if(!parent.isFull()){
-            this.parent = parent;
-            parent.setChild(this);}    }
+        parent.setChild(this);
+    }
 
     public void setChild(Node child){
         if(!hasLeftChild()){
             setLeftChild(child);
+            child.setParent(this);
         }
         else if(!hasRightChild()){
             setRightChild(child);
+            child.setParent(this);
         }
+
+        else if(!getLeftChild().isFull()){
+            getLeftChild().setChild(child);
+        }
+        else
+            getRightChild().setChild(child);
     }
     public Node(){}
 
     public Node getParent() {
         return parent;
+    }
+
+    private void setParent(Node parent){
+        this.parent = parent;
     }
 
     public Node getLeftChild() {
