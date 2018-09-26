@@ -70,7 +70,12 @@ class NodeTest {
         for(int i = 0; i < 8; i++){
             rootNode.setChild(new Node());
         }
-        System.out.println(rootNode.depth());
         assert rootNode.depth() == 4;
+
+        for(int i = 0 ; i<112;i++){
+            rootNode.setChild(new Node());
+        }
+
+        assert rootNode.depth() == 7;
     }
 }
