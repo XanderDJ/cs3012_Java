@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import util.Node;
@@ -52,5 +51,26 @@ class NodeTest {
     void isRoot() {
         assert node1.isRoot();
         if(node3.isRoot()) throw new AssertionError();
+    }
+
+    @Test
+     void balancedTreeTest(){
+        Node rootNode = new Node();
+        for(int i = 0 ; i < 2; i++){
+            rootNode.setChild(new Node());
+        }
+
+        assert rootNode.depth() == 2;
+
+        for(int i = 0; i < 4;i++){
+            rootNode.setChild(new Node());
+        }
+        assert rootNode.depth() == 3;
+
+        for(int i = 0; i < 8; i++){
+            rootNode.setChild(new Node());
+        }
+        System.out.println(rootNode.depth());
+        assert rootNode.depth() == 4;
     }
 }

@@ -30,12 +30,12 @@ public class Node {
             setRightChild(child);
             child.setParent(this);
         }
-
-        else if(!getLeftChild().isFull()){
-            getLeftChild().setChild(child);
+        else if(getLeftChild().countNodes() > getRightChild().countNodes()){
+            getRightChild().setChild(child);
         }
         else
-            getRightChild().setChild(child);
+        getLeftChild().setChild(child);
+
     }
     public Node(){}
 
@@ -80,6 +80,26 @@ public class Node {
             return true;
         }
         return false;
+    }
+
+    public int depth(){
+        int depth = 1;
+        int depthLeft = 0;
+        int depthRight = 0;
+        if(hasLeftChild()){
+            depthLeft = getLeftChild().depth();
+        }
+        if(hasRightChild()){
+            depthRight = getRightChild().depth();
+        }
+        depth += depthLeft >= depthRight ? depthLeft:depthRight;
+        return depth;
+    }
+    public int countNodes(){
+        int count = 1;
+        count += hasLeftChild() ? getLeftChild().countNodes() : 0;
+        count += hasRightChild() ? getRightChild().countNodes() : 0;
+        return count;
     }
 
 
