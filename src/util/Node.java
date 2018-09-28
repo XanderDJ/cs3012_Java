@@ -37,6 +37,18 @@ public class Node {
         getLeftChild().setChild(child);
 
     }
+
+    public Node getChild(String code){
+        if(code.isEmpty()){
+            return this;
+        }
+        else if (code.startsWith("l")){
+            return getLeftChild().getChild(code.replaceFirst("l",""));
+        }
+        else
+            return getRightChild().getChild(code.replaceFirst("r",""));
+    }
+
     public Node(){}
 
     public Node getParent() {
