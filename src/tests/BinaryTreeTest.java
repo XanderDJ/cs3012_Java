@@ -7,7 +7,7 @@ import util.BinaryTree;
 
 class BinaryTreeTest {
 
-    //LCA with the same tree
+    //LCA with the same node
     @Test
     void LCASameNode(){
         Node root = new Node();

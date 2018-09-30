@@ -14,7 +14,10 @@ public class BinaryTree {
         this.root = root;
     }
 
-    public Node lca(Node child, Node rightChild) {
+    public Node lca(Node leftChild, Node rightChild) {
+        if(leftChild == rightChild){
+            return leftChild;
+        }
         return null;
     }
 }
