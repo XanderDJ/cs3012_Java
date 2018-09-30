@@ -78,4 +78,18 @@ class NodeTest {
 
         assert rootNode.depth() == 7;
     }
+
+    @Test
+    void GetChildTest(){
+        Node root = new Node();
+        Node l1 = new Node(root);
+        Node l2 = new Node(l1);
+        Node l3 = new Node(l2);
+        Node r3 = new Node(l2);
+        Node r4 = new Node();
+        r3.setRightChild(r4);
+
+        assert root.getChild("llrr") == r4;
+
+    }
 }

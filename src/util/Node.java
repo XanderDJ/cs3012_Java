@@ -21,14 +21,16 @@ public class Node {
         parent.setChild(this);
     }
 
+    /**
+     * Using this method to add child will make a balanced tree starting from that tree
+     * @param child
+     */
     public void setChild(Node child){
         if(!hasLeftChild()){
             setLeftChild(child);
-            child.setParent(this);
         }
         else if(!hasRightChild()){
             setRightChild(child);
-            child.setParent(this);
         }
         else if(getLeftChild().countNodes() > getRightChild().countNodes()){
             getRightChild().setChild(child);
@@ -63,16 +65,19 @@ public class Node {
         return leftChild;
     }
 
-    private void setLeftChild(Node leftChild) {
-        this.leftChild = leftChild;
+    public void setLeftChild(Node child) {
+        this.leftChild = child;
+        child.setParent(this);
+
     }
 
     public Node getRightChild() {
         return rightChild;
     }
 
-    private void setRightChild(Node rightChild) {
-        this.rightChild = rightChild;
+    public void setRightChild(Node child) {
+        this.rightChild = child;
+        child.setParent(this);
     }
 
     public boolean hasRightChild(){
