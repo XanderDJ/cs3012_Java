@@ -27,14 +27,14 @@ public class BinaryTree {
         Node lastNodeFound = leftChild;
         foundNodes.add(lastNodeFound);
         while(lastNodeFound != getRoot()){
-            lastNodeFound = leftChild.getParent();
+            lastNodeFound = lastNodeFound.getParent();
             foundNodes.add(lastNodeFound);
         }
 
-        Node lowestCommonAncestor = null;
-        boolean LCAFound = false;
+        Node lowestCommonAncestor = rightChild;
+        boolean LCAFound = foundNodes.contains(lowestCommonAncestor) ? true: false;
         while (!LCAFound){
-            lowestCommonAncestor = rightChild.getParent();
+            lowestCommonAncestor = lowestCommonAncestor.getParent();
             if(foundNodes.contains(lowestCommonAncestor)){
                 LCAFound = true;
             }

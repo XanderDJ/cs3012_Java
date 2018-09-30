@@ -22,7 +22,6 @@ class BinaryTreeTest {
         BinaryTree tree = new BinaryTree(root);
         Node leftChild = new Node(root);
         Node rightChild = new Node(root);
-
         assert tree.lca(leftChild, rightChild) == root;
     }
 
@@ -34,7 +33,6 @@ class BinaryTreeTest {
         Node l1 = new Node(root);
         Node r1 = new Node(root);
         Node l2 = new Node(l1);
-
         assert tree.lca(l2, r1) == root;
     }
 
