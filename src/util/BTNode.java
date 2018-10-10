@@ -1,23 +1,23 @@
 package util;
 
-public class Node {
-    private Node parent;
-    private Node leftChild;
-    private Node rightChild;
+public class BTNode {
+    private BTNode parent;
+    private BTNode leftChild;
+    private BTNode rightChild;
 
-    public Node(Node parent, Node leftChild, Node rightChild) {
+    public BTNode(BTNode parent, BTNode leftChild, BTNode rightChild) {
         parent.setChild(this);
 
         setChild(leftChild);
         setChild(rightChild);
     }
 
-    public Node(Node parent, Node child){
+    public BTNode(BTNode parent, BTNode child){
         parent.setChild(this);
         setChild(child);
     }
 
-    public Node(Node parent){
+    public BTNode(BTNode parent){
         parent.setChild(this);
     }
 
@@ -25,7 +25,7 @@ public class Node {
      * Using this method to add child will make a balanced tree starting from that tree
      * @param child
      */
-    public void setChild(Node child){
+    public void setChild(BTNode child){
         if(!hasLeftChild()){
             setLeftChild(child);
         }
@@ -40,7 +40,7 @@ public class Node {
 
     }
 
-    public Node getChild(String code){
+    public BTNode getChild(String code){
         if(code.isEmpty()){
             return this;
         }
@@ -51,31 +51,31 @@ public class Node {
             return getRightChild().getChild(code.replaceFirst("r",""));
     }
 
-    public Node(){}
+    public BTNode(){}
 
-    public Node getParent() {
+    public BTNode getParent() {
         return parent;
     }
 
-    private void setParent(Node parent){
+    private void setParent(BTNode parent){
         this.parent = parent;
     }
 
-    public Node getLeftChild() {
+    public BTNode getLeftChild() {
         return leftChild;
     }
 
-    public void setLeftChild(Node child) {
+    public void setLeftChild(BTNode child) {
         this.leftChild = child;
         child.setParent(this);
 
     }
 
-    public Node getRightChild() {
+    public BTNode getRightChild() {
         return rightChild;
     }
 
-    public void setRightChild(Node child) {
+    public void setRightChild(BTNode child) {
         this.rightChild = child;
         child.setParent(this);
     }
