@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import util.BTNode;
-import util.Graph;
+import lca.Graph;
 
 class GraphTest {
 
