@@ -1,5 +1,7 @@
 package util;
 
+import java.util.HashSet;
+
 public interface Node {
-    public Node getParent();
+    public HashSet<Node> getParent();
 }

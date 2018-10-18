@@ -25,25 +25,6 @@ public class Graph {
 
 
     public Node lca(Node node1, Node node2) {
-        HashSet<Node> foundNodes = new HashSet<>();
-        if(node1 == node2){
-            return node1;
-        }
-        Node lastNodeFound = node1;
-        foundNodes.add(lastNodeFound);
-        while(lastNodeFound != getRoot()){
-            lastNodeFound = lastNodeFound.getParent();
-            foundNodes.add(lastNodeFound);
-        }
-
-        Node lowestCommonAncestor = node2;
-        boolean LCAFound = foundNodes.contains(lowestCommonAncestor);
-        while (!LCAFound){
-            lowestCommonAncestor = lowestCommonAncestor.getParent();
-            if(foundNodes.contains(lowestCommonAncestor)){
-                LCAFound = true;
-            }
-        }
-        return lowestCommonAncestor;
+        return null;
     }
 }

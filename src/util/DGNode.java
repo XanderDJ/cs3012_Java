@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class DGNode implements Node {
 
     public HashSet<DGNode> children = new HashSet<>();
-    public HashSet<DGNode> parents = new HashSet<>();
+    public HashSet<Node> parents = new HashSet<>();
 
     public DGNode(DGNode parent){
         addParent(parent);
@@ -21,10 +21,10 @@ public class DGNode implements Node {
     }
 
     public void addParent(DGNode parent){
-        getParents().add(parent);
+        getParent().add(parent);
     }
 
-    public HashSet<DGNode> getParents(){
+    public HashSet<Node> getParent(){
         return this.parents;
     }
 

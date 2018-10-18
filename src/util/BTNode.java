@@ -1,7 +1,9 @@
 package util;
 
+import java.util.HashSet;
+
 public class BTNode implements Node{
-    private BTNode parent;
+    private HashSet<Node> parent;
     private BTNode leftChild;
     private BTNode rightChild;
 
@@ -53,12 +55,12 @@ public class BTNode implements Node{
 
     public BTNode(){}
 
-    public BTNode getParent() {
+    public HashSet<Node> getParent() {
         return parent;
     }
 
     private void setParent(BTNode parent){
-        this.parent = parent;
+        this.parent.add(parent);
     }
 
     public BTNode getLeftChild() {
