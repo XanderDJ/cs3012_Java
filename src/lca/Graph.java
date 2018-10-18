@@ -1,7 +1,6 @@
 package lca;
 
 
-import util.BTNode;
 import util.Node;
 
 import java.util.ArrayList;
@@ -58,14 +57,24 @@ public class Graph {
         ArrayList<Node> pathInitializer = new ArrayList<>();
         pathInitializer.add(node1);
         pathsFound.add(pathInitializer);
-        while(checkIfAllPathsFoundRoot(pathsFound)){
-
+        while(!AllPathsFoundRoot(pathsFound)){
+            for(ArrayList<Node> path: pathsFound){
+                Node lastNodeFound = path.get(path.size()-1);
+                HashSet<Node> parents = lastNodeFound.getParent();
+                for(Node parent:parents){
+                    ArrayList<Node> newPath = new ArrayList<>(path);
+                    newPath.add(parent);
+                    pathsFound.add(newPath);
+                }
+            }
         }
+
+
         return null;
 
     }
 
-    public boolean checkIfAllPathsFoundRoot(HashSet<ArrayList<Node>> paths){
+    public boolean AllPathsFoundRoot(HashSet<ArrayList<Node>> paths){
         for (ArrayList<Node> path:paths) {
             if(!path.contains(getRoot())){
                 return false;
