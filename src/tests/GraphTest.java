@@ -124,9 +124,31 @@ class GraphTest {
 
     @Test
     /*
-
+    Look at https://github.com/XanderDJ/cs3012_Java/blob/DAGSupport/Knipsel.PNG to see the Graph structure
      */
     void bigGraphtest(){
+        DGNode root = new DGNode();
+        Graph graph = new Graph(root);
+        DGNode C1 = new DGNode(root);
+        DGNode C2 = new DGNode(root);
+        DGNode C3 = new DGNode(root);
+        DGNode CC1 = new DGNode(C1);
+        DGNode CC2 = new DGNode(C1);
+        DGNode CC3 = new DGNode(C2);
+        DGNode CC4 = new DGNode(C2,C3);
+        DGNode CC5 = new DGNode(C3);
+        DGNode CCC1 = new DGNode(CC1);
+        DGNode CCC2 = new DGNode(CC1,CC2);
+        DGNode CCC3 = new DGNode(CC2, CC3);
+        DGNode CCC4 = new DGNode(CC3, CC4);
+        DGNode CCC5 = new DGNode(CC5);
+        DGNode L1 = new DGNode(CCC1, CCC2, CCC3);
+        DGNode L2 = new DGNode(CCC3, CCC4, CCC5);
+
+        assert graph.lca(L1, CC2) == CC2;
+        assert graph.lca(L1,L2) == CCC3;
+        assert graph.lca(L1,CCC4) == CC3;
+        assert graph.lca(CCC4, CCC5) == C3;
 
     }
 
