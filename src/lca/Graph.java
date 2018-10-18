@@ -68,6 +68,18 @@ public class Graph {
                 }
             }
         }
+        ArrayList<Node> possibleLCAS = new ArrayList<>();
+        possibleLCAS.add(node2);
+        while(!possibleLCAS.isEmpty()){
+            ArrayList<Node> parents = new ArrayList<>();
+            for(Node LCA:possibleLCAS){
+                if(LCAFound(pathsFound,LCA)){
+                    return LCA;
+                }
+                parents.addAll(LCA.getParent());
+            }
+            possibleLCAS = parents;
+        }
 
 
         return null;
@@ -82,4 +94,14 @@ public class Graph {
         }
         return  true;
     }
+
+    public boolean LCAFound(HashSet<ArrayList<Node>> paths,Node LCA){
+        for(ArrayList<Node> path:paths){
+            if(path.contains(LCA)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
