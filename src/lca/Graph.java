@@ -2,44 +2,45 @@ package lca;
 
 
 import util.BTNode;
+import util.Node;
 
 import java.util.HashSet;
 
 public class Graph {
 
-    private BTNode root;
+    private Node root;
 
-    public Graph(BTNode root){
+    public Graph(Node root){
             this.root = root;}
 
     public Graph(){}
 
-    public BTNode getRoot(){
+    public Node getRoot(){
         return this.root;
     }
 
-    public void setRoot(BTNode root) {
+    public void setRoot(Node root) {
         this.root = root;
     }
 
 
-    public BTNode lca(BTNode leftChild, BTNode rightChild) {
-        HashSet<BTNode> foundBTNodes = new HashSet<>();
-        if(leftChild == rightChild){
-            return leftChild;
+    public Node lca(Node node1, Node node2) {
+        HashSet<Node> foundNodes = new HashSet<>();
+        if(node1 == node2){
+            return node1;
         }
-        BTNode lastBTNodeFound = leftChild;
-        foundBTNodes.add(lastBTNodeFound);
-        while(lastBTNodeFound != getRoot()){
-            lastBTNodeFound = lastBTNodeFound.getParent();
-            foundBTNodes.add(lastBTNodeFound);
+        Node lastNodeFound = node1;
+        foundNodes.add(lastNodeFound);
+        while(lastNodeFound != getRoot()){
+            lastNodeFound = lastNodeFound.getParent();
+            foundNodes.add(lastNodeFound);
         }
 
-        BTNode lowestCommonAncestor = rightChild;
-        boolean LCAFound = foundBTNodes.contains(lowestCommonAncestor) ? true: false;
+        Node lowestCommonAncestor = node2;
+        boolean LCAFound = foundNodes.contains(lowestCommonAncestor);
         while (!LCAFound){
             lowestCommonAncestor = lowestCommonAncestor.getParent();
-            if(foundBTNodes.contains(lowestCommonAncestor)){
+            if(foundNodes.contains(lowestCommonAncestor)){
                 LCAFound = true;
             }
         }

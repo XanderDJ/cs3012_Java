@@ -2,7 +2,7 @@ package util;
 
 import java.util.HashSet;
 
-public class DGNode {
+public class DGNode implements Node {
 
     public HashSet<DGNode> children = new HashSet<>();
     public HashSet<DGNode> parents = new HashSet<>();
@@ -13,6 +13,12 @@ public class DGNode {
     }
 
     public DGNode(){}
+
+    public DGNode(DGNode... parents) {
+        for(DGNode parent:parents){
+            addParent(parent);
+        }
+    }
 
     public void addParent(DGNode parent){
         getParents().add(parent);

@@ -3,8 +3,18 @@ package tests;
 import org.junit.jupiter.api.Test;
 import util.BTNode;
 import lca.Graph;
+import util.DGNode;
 
 class GraphTest {
+
+    @Test
+    void interfaceNodeTest(){
+        BTNode bRoot = new BTNode();
+        DGNode dRoot = new DGNode();
+        Graph Btree = new Graph(bRoot);
+        Graph Dtree = new Graph(dRoot);
+
+    }
 
     //LCA with the same node
     @Test
@@ -60,6 +70,64 @@ class GraphTest {
         }
         assert tree.lca(root.getChild("llrrlrlr"),root.getChild("lrrllrl"))== root.getChild("l") ;
         assert tree.lca(root.getChild("rrllrlrllrrl"),root.getChild("rrllrlrlrllr")) == root.getChild("rrllrlrl");
+    }
+
+    @Test
+    /*
+    This tests the most simple of a directed acyclic graph that tests the new property of having multiple parents:
+
+                         R
+                        /|\
+                      C  C C
+                       \ /  \
+                        L     L
+     */
+    void LCADAGSimple(){
+        Graph graph = new Graph();
+        DGNode root = new DGNode();
+        graph.setRoot(root);
+        DGNode child1 = new DGNode(root);
+        DGNode child2 = new DGNode(root);
+        DGNode child3 = new DGNode(root);
+        DGNode leafNode1 = new DGNode(child1,child2);
+        DGNode leafNode2 =  new DGNode(child3);
+        assert  graph.lca(leafNode1,leafNode2) == root;
+    }
+
+
+    @Test
+    /*
+    This tests a dag where there the lca is on a branching path
+
+                             R
+                            /  \
+                           LCA  C
+                          /      \
+                          C      C
+                          \     /
+                              L
+     */
+    void LCAParentIsonBranchingPath(){
+        Graph graph = new Graph();
+        DGNode root = new DGNode();
+        graph.setRoot(root);
+        DGNode child1 = new DGNode(root);
+        DGNode child2 = new DGNode(root);
+        DGNode CC1 = new DGNode(child1);
+        DGNode CC2 = new DGNode(child2);
+
+        DGNode leafNode1 = new DGNode(CC1,CC2);
+
+        assert graph.lca(leafNode1,child1) == child1;
+    }
+
+
+    @Test
+    /*
+
+     */
+    void bigGraphtest(){
 
     }
+
 }

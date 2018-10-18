@@ -1,6 +1,6 @@
 package util;
 
-public class BTNode {
+public class BTNode implements Node{
     private BTNode parent;
     private BTNode leftChild;
     private BTNode rightChild;
