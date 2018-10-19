@@ -3,7 +3,7 @@ package util;
 import java.util.HashSet;
 
 public class BTNode implements Node{
-    private HashSet<Node> parent;
+    private HashSet<Node> parent = new HashSet<>();
     private BTNode leftChild;
     private BTNode rightChild;
 
