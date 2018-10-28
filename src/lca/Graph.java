@@ -53,55 +53,35 @@ public class Graph {
         if(node1 ==node2){
             return node1;
         }
-        HashSet<ArrayList<Node>> pathsFound = new HashSet<>();
-        ArrayList<Node> pathInitializer = new ArrayList<>();
-        pathInitializer.add(node1);
-        pathsFound.add(pathInitializer);
-        while(!AllPathsFoundRoot(pathsFound)){
-            for(ArrayList<Node> path: pathsFound){
-                Node lastNodeFound = path.get(path.size()-1);
-                HashSet<Node> parents = lastNodeFound.getParent();
-                for(Node parent:parents){
-                    ArrayList<Node> newPath = new ArrayList<>(path);
-                    newPath.add(parent);
-                    pathsFound.add(newPath);
+        HashSet<Node> nodesToExplore = new HashSet<>();
+        nodesToExplore.add(node1);
+        HashSet<Node> allParents = new HashSet<>();
+        while(!nodesToExplore.isEmpty()){
+            allParents.addAll(nodesToExplore);
+            HashSet<Node> parents = new HashSet<>();
+            for(Node child:nodesToExplore){
+                parents.addAll(child.getParent());
+            }
+            nodesToExplore = parents;
+        }
+
+        HashSet<Node> possibleLCAS = new HashSet<>();
+        possibleLCAS.add(node2);
+        while(!possibleLCAS.isEmpty()) {
+            for (Node possibleLCA : possibleLCAS) {
+                if (allParents.contains(possibleLCA)) {
+                    return possibleLCA;
                 }
             }
-        }
-        ArrayList<Node> possibleLCAS = new ArrayList<>();
-        possibleLCAS.add(node2);
-        while(!possibleLCAS.isEmpty()){
-            ArrayList<Node> parents = new ArrayList<>();
-            for(Node LCA:possibleLCAS){
-                if(LCAFound(pathsFound,LCA)){
-                    return LCA;
-                }
-                parents.addAll(LCA.getParent());
+            HashSet<Node> parents = new HashSet<>();
+            for(Node node:possibleLCAS){
+                parents.addAll(node.getParent());
             }
             possibleLCAS = parents;
         }
-
-
         return null;
 
     }
 
-    public boolean AllPathsFoundRoot(HashSet<ArrayList<Node>> paths){
-        for (ArrayList<Node> path:paths) {
-            if(!path.contains(getRoot())){
-                return false;
-            }
-        }
-        return  true;
-    }
-
-    public boolean LCAFound(HashSet<ArrayList<Node>> paths,Node LCA){
-        for(ArrayList<Node> path:paths){
-            if(path.contains(LCA)){
-                return true;
-            }
-        }
-        return false;
-    }
 
 }
