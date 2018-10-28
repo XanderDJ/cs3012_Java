@@ -9,12 +9,9 @@ I can still show that i know the process of engineering and have followed it her
 1) Made node implementation with callback to pointer
 1) adding an new child to a node will make a balanced binary tree from that node onward
 1) LCA in a binary tree will work with good inputs (child is part of the tree and is unique)
+1) LCA works for every non cyclic Graph. A cyclic graph will put the algorithm in an infinite loop
 ## TODO
-1) first write test cases for everything
-1) Refactor my code so that binary tree is it own object that extends Node. so that set Child will make a balanced tree for a binary tree
-but you can still use a Node object for DAH. at the moment setChild is defined at Node and this shouldn't be
-1) implement multiple parent philosophy for Node. 
-1) implement LCA for both graphs.
+1) deal with wrong inputs
 
 
 ## Link to haskell directory
